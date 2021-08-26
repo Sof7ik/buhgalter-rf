@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Форма участия в форуме</title>
+
+	<link rel="stylesheet" href="./form.css">
+
+	<script
+		src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script src="../jquery.mask.min.js" defer></script>
+
+	<script defer src="./form.js"></script>
+</head>
+<body>
+
+	<div class="form-container">
+		<form action="#" method="POST" class="forum-form">
+			<fieldset class="forum-form__inputs-wrapper">
+				<legend class="forum-form__inputs-wrapper__title">Заявка на участие в бизнес-форуме</legend>
+
+				<div class="input-wrapper">
+					<label
+						for="member-name"
+						class="forum-form__label">Имя</label>
+
+					<input type="text"
+						   name="name"
+						   autocomplete="name"
+						   id="member-name"
+						   class="forum-form__input"
+						   aria-label="Имя участника бизнес-форума">
+				</div>
+
+				<div class="input-wrapper">
+					<label
+						for="member-company-name"
+						class="forum-form__label">Название компании</label>
+
+					<input type="text"
+						   name="company-name"
+						   autocomplete="company-name"
+						   id="member-company-name"
+						   class="forum-form__input"
+						   aria-label="Название компании участника бизнес-форума">
+				</div>
+
+				<div class="input-wrapper">
+					<label
+						for="member-phone"
+						class="forum-form__label">Телефон</label>
+
+					<input type="tel"
+						   name="phone"
+						   autocomplete="tel"
+						   id="member-phone"
+						   class="forum-form__input"
+						   aria-label="Телефон участника бизнес-форума">
+				</div>
+
+				<div class="input-wrapper">
+					<label
+						for="member-email"
+						class="forum-form__label">Почта</label>
+					<input type="email"
+						   name="email"
+						   autocomplete="email"
+						   id="member-email"
+						   class="forum-form__input"
+						   aria-label="Адрес электронной почты участника бизнес-форума">
+				</div>
+			</fieldset>
+
+			<button class="forum-form__submit-btn"
+					id="forum-form__submit-btn"
+					aria-label="Отправить заявку на участие в форуме">Участвую!</button>
+			<p class="user-agree">
+				Нажимая на кнопку, Вы даете согласие на
+				<a href="#">обработку персональных данных</a>.
+			</p>
+		</form>
+	</div>
+</body>
+</html>
