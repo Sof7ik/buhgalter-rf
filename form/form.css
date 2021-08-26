@@ -34,9 +34,19 @@ html, body
 	padding: 0 25px;
 }
 
+.form-container.success
+{
+	position: relative;
+}
+
 .forum-form
 {
 	width: 100%;
+}
+
+.form-container.success .forum-form
+{
+	display: none;
 }
 
 .forum-form__inputs-wrapper__title
@@ -221,4 +231,65 @@ html, body
 	outline: none;
 	color: #0000EE;
 	border-bottom-color: #0000EE;
+}
+
+.success-form-block
+{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: auto;
+	z-index: 2;
+
+	opacity: 0;
+	pointer-events: none;
+
+	align-self: center;
+
+	transition: opacity .3s;
+}
+.form-container.success .success-form-block
+{
+	pointer-events: all;
+	opacity: 1;
+}
+
+.success-form-block img
+{
+	display: block;
+	margin: 0 auto 74px;
+
+	width: 118px;
+	height: 118px;
+	object-fit: cover;
+}
+@media screen and (max-width: 450px)
+{
+	.success-form-block img
+	{
+		margin: 0 auto 54px;
+	}
+}
+
+.success-message
+{
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 22px;
+	line-height: 117%;
+
+	text-align: center;
+	letter-spacing: 0.05em;
+
+	color: #333333;
+}
+@media screen and (max-width: 450px)
+{
+	.success-message
+	{
+		font-size: 17px;
+	}
 }

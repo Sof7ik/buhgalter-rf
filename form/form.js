@@ -1,17 +1,20 @@
 async function sendData(data)
 {
-    console.log(data)
+    // console.log(data)
 
-    // const headers = {
-    //     'Content-Type': 'application/json'
-    // }
+    const headers = {
+        'Content-Type': 'application/json'
+    }
 
-    // return await fetch('url', {
-    //     method: 'POST',
-    //     headers: headers,
-    //     body: JSON.stringify(data)
+    // return await fetch('https://jsonplaceholder.typicode.com/todos/1', {
+        // method: 'POST',
+        // headers: headers,
+        // body: JSON.stringify(data)
     // })
-    //     .then(response => response.json())
+        // .then(response => response.json())
+
+    return await fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => response.json())
 }
 
 function formHandler(event)
@@ -40,7 +43,12 @@ function formHandler(event)
         })
 
         sendData(dataObject).then(data => {
-            // console.log(data)
+            console.log('data', data)
+
+            if (data.id)
+            {
+                document.querySelector('.form-container').classList.add('success');
+            }
         });
     }
 }
