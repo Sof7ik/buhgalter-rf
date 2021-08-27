@@ -100,8 +100,7 @@ body
 
 .slide-avatar
 {
-	position: relative;
-	z-index: 2;
+	align-self: flex-end;
 
 	display: block;
 
@@ -135,6 +134,9 @@ body
 {
 	left: 20px;
 	margin-right: 0;
+
+	position: relative;
+	z-index: 2;
 }
 
 .slide-content-wrapper
