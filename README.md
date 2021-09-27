@@ -4,4 +4,4 @@
 
 [Слайдер преимуществ](https://sof7ik.github.io/buhgalter-rf/slider/ "Открыть страницу со слайдером преимуществ")
 
-[Новый блок о нас](https://sof7ik.github.io/buhgalter-rf/about-us-slider")
+[Новый блок о нас](https://sof7ik.github.io/buhgalter-rf/about-us-slider)
