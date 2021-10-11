@@ -54,6 +54,9 @@ html, body
 		top: 0;
 		left: 0;
 		width: 100%;
+		z-index: 2;
+		background-color: red;
+		margin-bottom: 50px;
 	}
 }
 
@@ -73,6 +76,7 @@ html, body
 	align-items: center;
 
 	padding: 5px 20px;
+	background-color: #fff;
 }
 @media screen and (max-width: 600px)
 {
@@ -81,7 +85,8 @@ html, body
 		justify-content: space-between;
 		padding: 16px 20px;
 
-		/*position: relative;*/
+		position: relative;
+		z-index: 2;
 	}
 }
 
@@ -920,7 +925,7 @@ html, body
 #burger-menu-block
 {
 	position: absolute;
-	z-index: 2;
+	z-index: 5;
 
 	left: -100vw;
 	width: 100%;
@@ -1167,11 +1172,14 @@ html, body
 .mobile-services-menu
 {
 	display: none;
+	max-height: 0;
 
-	position: relative;
+	position: absolute;
+	width: 100%;
 }
 .new-mint-header.opened-mobile-services .mobile-services-menu
 {
+	max-height: max-content;
 	height: calc(100vh - 67px);
 }
 
@@ -1185,6 +1193,9 @@ html, body
 
 .mobile-services-menu__title-wrapper
 {
+	position: relative;
+	z-index: 2;
+
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -1212,19 +1223,37 @@ html, body
 {
 	width: 12px;
 	margin-left: 16px;
+
+	transition: transform .3s;
+}
+
+.new-mint-header.opened-mobile-services .mobile-services-menu__title-wrapper img
+{
+	transform: rotate(-180deg);
 }
 
 .mobile-services-menu__main-sections
 {
+	position: relative;
+	width: 100%;
+
 	background-color: #DB4D27;
 	padding-bottom: 40px;
 	height: calc(100% - 49px);
 	overflow-y: auto;
+
+	transition: top 0.8s;
+
+}
+.mobile-services-menu__main-sections.active
+{
+	top: 0 !important;
+
+	transition: top .3s;
 }
 
 .mobile-services-menu__main-sections .main-section
 {
-	/*margin-bottom: 10px;*/
 	padding: 18px 20px;
 
 	position: relative;
@@ -1237,17 +1266,16 @@ html, body
 	transition: background-color .3s;
 }
 
-.mobile-services-menu__main-sections .main-section:last-child
-{
-	margin-bottom: 0;
-}
-
 .mobile-services-menu__main-sections .main-section.active
 {
 	background-color: #fff;
+
+	position: sticky;
+	top: 0;
+	z-index: 2;
 }
 
-.mobile-main-section__title-wrapper
+.mobile-services-menu__main-sections .main-section .mobile-main-section__title-wrapper
 {
 	display: flex;
 	flex-flow: row nowrap;
@@ -1255,14 +1283,11 @@ html, body
 	align-items: center;
 
 	position: relative;
+
+	width: 100%;
 }
 
-/*.mobile-services-menu__main-sections .main-section.active > .mobile-main-section__title-wrapper*/
-/*{*/
-/*	justify-content: flex-start;*/
-/*}*/
-
-.mobile-services-menu__main-sections .main-section > .mobile-main-section__title
+.mobile-services-menu__main-sections .main-section .mobile-main-section__title
 {
 	position: relative;
 	left: 0;
@@ -1284,15 +1309,14 @@ html, body
 	transition: color .3s, left .3s;
 }
 
-.mobile-services-menu__main-sections .main-section.active > .mobile-main-section__title
+.mobile-services-menu__main-sections .main-section.active .mobile-main-section__title
 {
 	left: calc(15px + 16px);
 	color: #000;
-	/*order: 2;*/
 	margin-right: 0;
 }
 
-.mobile-services-menu__main-sections .main-section > .mobile-main-section__title-icon
+.mobile-services-menu__main-sections .main-section .mobile-main-section__title-icon
 {
 	position: relative;
 	right: 0;
@@ -1303,13 +1327,11 @@ html, body
 	transition: right .3s;
 }
 
-.mobile-services-menu__main-sections .main-section.active > .mobile-main-section__title-icon
+.mobile-services-menu__main-sections .main-section.active .mobile-main-section__title-icon
 {
 	filter: invert(100%);
 	transform: rotate(90deg);
 
-	/*order: 1;*/
-	/*margin-right: 16px;*/
 	right: calc(100% - 15px);
 }
 
@@ -1321,15 +1343,14 @@ html, body
 	z-index: 2;
 
 	left: -100vw;
-	top: 0;
 
 	width: 100%;
 
 	background-color: #DB4D27;
 
-	transition: left .3s;
-
 	overflow: hidden;
+
+	transition: left .3s;
 }
 .main-section-dropdown.active
 {
@@ -1344,7 +1365,8 @@ html, body
 	}
 }
 
-.main-section-dropdown > .mobile-main-section__subtitle-wrapper
+/* heading wrapper of second level menu item */
+.main-section-dropdown .mobile-main-section__third-level-menu-item > .mobile-main-section__subtitle-wrapper
 {
 	display: flex;
 	flex-flow: row nowrap;
@@ -1355,12 +1377,13 @@ html, body
 
 	border-bottom: 1px solid #fff;
 }
-.main-section-dropdown > .mobile-main-section__subtitle-wrapper:last-child
+.main-section-dropdown .mobile-main-section__third-level-menu-item > .mobile-main-section__subtitle-wrapper:last-child
 {
 	border-bottom: none;
 }
 
-.main-section-dropdown > .mobile-main-section__subtitle-wrapper .mobile-main-section__subtitle
+/* heading text of second level menu item */
+.main-section-dropdown .mobile-main-section__third-level-menu-item > .mobile-main-section__subtitle-wrapper .mobile-main-section__subtitle
 {
 	text-decoration: none;
 
@@ -1376,19 +1399,62 @@ html, body
 
 	transition: color .3s;
 }
-.main-section-dropdown > .mobile-main-section__subtitle-wrapper:hover .mobile-main-section__subtitle
+.main-section-dropdown .mobile-main-section__third-level-menu-item > .mobile-main-section__subtitle-wrapper:hover .mobile-main-section__subtitle
 {
 	color: #000;
 }
 
-.main-section-dropdown > .mobile-main-section__subtitle-wrapper .mobile-main-section__subtitle-icon
+/* heading icon of second level menu item */
+.main-section-dropdown .mobile-main-section__third-level-menu-item > .mobile-main-section__subtitle-wrapper .mobile-main-section__subtitle-icon
 {
 	width: 19px;
 	height: 15px;
 	transform: rotate(-90deg);
 }
 
-.main-section-dropdown > .mobile-main-section__subtitle-wrapper:hover .mobile-main-section__subtitle-icon
+.main-section-dropdown .mobile-main-section__third-level-menu-item > .mobile-main-section__subtitle-wrapper:hover .mobile-main-section__subtitle-icon
 {
 	filter: invert(100%);
+}
+
+.main-section-dropdown .mobile-main-section__third-level-menu-item .third-level-menu-points-list
+{
+	position: absolute;
+	left: -100vw;
+
+	z-index: 3;
+
+	width: 100%;
+
+	background-color: #DB4D27;
+
+	padding-left: 56px;
+	padding-bottom: 160px;
+
+	transition: left .3s;
+}
+
+.main-section-dropdown .mobile-main-section__third-level-menu-item .third-level-menu-points-list.opened
+{
+	left: 0;
+	top: 0;
+}
+
+.main-section-dropdown .mobile-main-section__third-level-menu-item .third-level-menu-points-list a
+{
+	display: block;
+
+	text-decoration: none;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 26px;
+
+	letter-spacing: 0.04em;
+
+	color: #FFFFFF;
+
+	padding: 10px 20px 10px 0;
+	border-bottom: 1px solid #E2DFDA;
 }
