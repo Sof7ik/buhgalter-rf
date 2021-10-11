@@ -55,8 +55,7 @@ html, body
 		left: 0;
 		width: 100%;
 		z-index: 2;
-		background-color: red;
-		margin-bottom: 50px;
+		/*margin-bottom: 50px;*/
 	}
 }
 
@@ -659,8 +658,13 @@ html, body
 
 .new-mint-header.sticky .header-main-line
 {
-	height: 0;
+	/*height: 0;*/
 	overflow: hidden;
+}
+
+.new-mint-header.sticky .header-main-line[data-opened="true"]
+{
+	overflow: visible;
 }
 
 @media screen and (max-width: 600px)
@@ -750,7 +754,7 @@ html, body
 
 .main-line-sections .main-line-section-big-button:hover + .orange-section-dropdown
 {
-	display: flex;
+	display: grid;
 }
 
 .orange-section-dropdown
@@ -765,11 +769,8 @@ html, body
 
 	padding: 18px 25px 18px;
 
-	/*display: flex;*/
 	display: none;
-	flex-flow: row nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
+	grid-template-columns: 305px 1fr;
 
 	overflow: hidden;
 
@@ -780,6 +781,7 @@ html, body
 	.orange-section-dropdown
 	{
 		padding: 18px 25px 18px 0;
+		grid-template-columns: 235px 1fr;
 	}
 }
 
@@ -884,6 +886,13 @@ html, body
 	.right-list
 	{
 		grid-template-columns: repeat(2, minmax(min-content, max-content));
+	}
+}
+@media screen and (max-width: 768px)
+{
+	.right-list
+	{
+		grid-template-columns: minmax(min-content, max-content);
 	}
 }
 

@@ -81,6 +81,7 @@ function openBurgerNavSubmenu(event)
     }
 }
 
+// open first menu
 function openMobileOrangeMainMenu(event)
 {
     const menuBlock = event.currentTarget.closest('.mobile-services-menu')
@@ -107,6 +108,7 @@ function openMobileOrangeMainMenu(event)
     }
 }
 
+// open second menu
 function openOrangeSubmenuFirstLevel(event)
 {
     if (event.target.tagName === 'A') return
@@ -114,8 +116,8 @@ function openOrangeSubmenuFirstLevel(event)
     // change listeners
     event.currentTarget.removeEventListener('click', openOrangeSubmenuFirstLevel, true);
     event.currentTarget.addEventListener('click', closeOrangeSubmenuFirstLevel, true);
+    console.log('open 2nd level')
 
-    console.log('open handler')
 
     let activeTitle = null;
 
@@ -165,13 +167,14 @@ function openOrangeSubmenuFirstLevel(event)
     firstLevelSubMenu.classList.add('active');
 }
 
+// close second menu
 function closeOrangeSubmenuFirstLevel(event)
 {
     // change listeners
     event.currentTarget.removeEventListener('click', closeOrangeSubmenuFirstLevel, true);
     event.currentTarget.addEventListener('click', openOrangeSubmenuFirstLevel, true);
 
-    console.log('close handler');
+    console.log('close 2nd level');
 
     const wrapper = event.currentTarget.closest('.main-section');
     wrapper.classList.remove('active');
@@ -184,18 +187,19 @@ function closeOrangeSubmenuFirstLevel(event)
     firstLevelSubMenu.style.maxHeight = '0px';
 }
 
+// open third menu
 function openMobileSubmenuSecondLevel(event)
 {
-    console.log('open 2nd level');
-
     const activeMainSection = document.querySelector('.main-section.active');
 
     activeMainSection.removeEventListener('click', closeOrangeSubmenuFirstLevel, true);
     activeMainSection.addEventListener('click', closeMobileSubmenuSecondLevel, true);
 
+    console.log('open 3rd level');
+
     if (document.querySelector('.third-level-menu-points-list.opened'))
     {
-        document.querySelector('.third-level-menu-points-list.opened').classList.remove('opened')
+        document.querySelector('.third-level-menu-points-list.opened').classList.remove('opened');
     }
 
     const titleText = event.currentTarget.querySelector('.mobile-main-section__subtitle').textContent;
@@ -215,13 +219,13 @@ function openMobileSubmenuSecondLevel(event)
     thirdLevelList.classList.toggle('opened');
 }
 
+// close third menu
 function closeMobileSubmenuSecondLevel(event)
 {
     event.currentTarget.removeEventListener('click', closeMobileSubmenuSecondLevel, true);
-
     event.currentTarget.addEventListener('click', closeOrangeSubmenuFirstLevel, true);
 
-    console.log('close 2nd level');
+    console.log('close 3rd level');
 
     const activeMainSection = document.querySelector('.main-section.active');
     activeMainSection.querySelector('.mobile-main-section__title').textContent = activeMainSection.dataset.initialTitle;
@@ -260,9 +264,16 @@ function initHandlers()
                 '.mobile-burger-navigation .burger-navigation-item.wrapper .burger-navigation-item__inner-link-wrapper svg')
             .forEach(arrowElem => arrowElem.addEventListener('click', openBurgerNavSubmenu));
 
-        // open first level submenu
+        // open main orange menu listener
+        document.querySelector('.mobile-services-menu__title-wrapper').addEventListener('click', openMobileOrangeMainMenu);
+
+        // open first level submenu listener
         document.querySelectorAll('.mobile-main-section__title-wrapper')
             .forEach(item => item.addEventListener('click',  openOrangeSubmenuFirstLevel, true))
+
+        // open second level submenu listener
+        document.querySelectorAll('.mobile-main-section__subtitle-wrapper')
+            .forEach(item => item.addEventListener('click', openMobileSubmenuSecondLevel, true))
 
         // hide mobile orange menu
         document.querySelector('.mobile-services-menu__main-sections').style.top =
@@ -270,13 +281,6 @@ function initHandlers()
 
         // unheight all submenus
         document.querySelectorAll('.main-section-dropdown').forEach(item => item.style.maxHeight = '0px');
-
-        // open main orange menu
-        document.querySelector('.mobile-services-menu__title-wrapper').addEventListener('click', openMobileOrangeMainMenu);
-
-        // open second level submenu
-        document.querySelectorAll('.mobile-main-section__subtitle-wrapper')
-            .forEach(item => item.addEventListener('click', openMobileSubmenuSecondLevel, true))
     }
 }
 
