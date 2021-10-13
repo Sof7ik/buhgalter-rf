@@ -1349,6 +1349,13 @@ html, body
 	position: relative;
 
 	width: 100%;
+
+	transition: padding .3s;
+}
+
+.mobile-services-menu__main-sections .main-section.active .mobile-main-section__title-wrapper
+{
+	padding-right: 15px;
 }
 
 .mobile-services-menu__main-sections .main-section .mobile-main-section__title
