@@ -15,13 +15,14 @@ function orangeSubmenuHandler(event)
 
 function stickyHeader(event)
 {
-    const headerElem = document.querySelector('header.new-mint-header');
+    const header = document.querySelector('header.new-mint-header');
+
     const orangeMenuContainer = document.querySelector('.header-main-line');
     const container = orangeMenuContainer.querySelector('.container-1410');
 
     if (window.scrollY > 0)
     {
-        headerElem.classList.add('sticky');
+        header.classList.add('sticky');
 
         if (orangeMenuContainer.dataset.opened !== "true")
         {
@@ -30,7 +31,7 @@ function stickyHeader(event)
     }
     else if (window.scrollY === 0)
     {
-        headerElem.classList.remove('sticky');
+        header.classList.remove('sticky');
         orangeMenuContainer.style.height = `${container.clientHeight}px`;
     }
 }
@@ -91,14 +92,21 @@ function openMobileOrangeMainMenu(event)
     document.querySelector('html').classList.toggle('not-scrollable');
 
     menuBlock.classList.toggle('active');
+
     document.querySelector('.new-mint-header').classList.toggle('opened-mobile-services');
 
     // hide opened submenu
     if (!document.querySelector('.new-mint-header').classList.contains('opened-mobile-services')
         && document.querySelector('.main-section-dropdown.active'))
     {
-        document.querySelector('.main-section.active').classList.remove('active');
-        document.querySelector('.main-section-dropdown.active').classList.remove('active');
+        
+        const activeMainSection = document.querySelector('.main-section.active');
+        activeMainSection.classList.remove('active');
+
+        const target = activeMainSection.querySelector('.mobile-main-section__title-wrapper');
+
+        // const active
+        closeOrangeSubmenuFirstLevel(null, target);
     }
 
     // hide opened third-level submenu
@@ -111,13 +119,14 @@ function openMobileOrangeMainMenu(event)
 // open second menu
 function openOrangeSubmenuFirstLevel(event)
 {
+    // event currentTarget === .mobile-main-section__title-wrapper
+
     if (event.target.tagName === 'A') return
 
     // change listeners
     event.currentTarget.removeEventListener('click', openOrangeSubmenuFirstLevel, true);
     event.currentTarget.addEventListener('click', closeOrangeSubmenuFirstLevel, true);
     console.log('open 2nd level')
-
 
     let activeTitle = null;
 
@@ -168,29 +177,49 @@ function openOrangeSubmenuFirstLevel(event)
 }
 
 // close second menu
-function closeOrangeSubmenuFirstLevel(event)
+function closeOrangeSubmenuFirstLevel(event, currentElem = null)
 {
     // change listeners
-    event.currentTarget.removeEventListener('click', closeOrangeSubmenuFirstLevel, true);
-    event.currentTarget.addEventListener('click', openOrangeSubmenuFirstLevel, true);
-
+    if (event)
+    {
+        event.currentTarget.removeEventListener('click', closeOrangeSubmenuFirstLevel, true);
+        event.currentTarget.addEventListener('click', openOrangeSubmenuFirstLevel, true);
+    }
+    else if (!event && currentElem)
+    {
+        currentElem.removeEventListener('click', closeOrangeSubmenuFirstLevel, true);
+        currentElem.addEventListener('click', openOrangeSubmenuFirstLevel, true);
+    }
     console.log('close 2nd level');
 
-    const wrapper = event.currentTarget.closest('.main-section');
+    let wrapper = null;
+
+    if (event)
+    {
+        wrapper = event.currentTarget.closest('.main-section');
+    }
+    else if (!event && currentElem)
+    {
+        wrapper = currentElem.closest('.main-section');
+    }
+
     wrapper.classList.remove('active');
 
     const firstLevelSubMenu =
         wrapper.querySelector(`.main-section-dropdown`);
     firstLevelSubMenu.classList.remove('active');
 
-    firstLevelSubMenu.style.height = '0px';
-    firstLevelSubMenu.style.maxHeight = '0px';
+    setTimeout( () => {
+        firstLevelSubMenu.style.height = '0px';
+        firstLevelSubMenu.style.maxHeight = '0px';
+    }, 300)
+
 }
 
 // open third menu
 function openMobileSubmenuSecondLevel(event)
 {
-    const activeMainSection = document.querySelector('.main-section.active');
+    const activeMainSection = document.querySelector('.main-section.active .mobile-main-section__title-wrapper');
 
     activeMainSection.removeEventListener('click', closeOrangeSubmenuFirstLevel, true);
     activeMainSection.addEventListener('click', closeMobileSubmenuSecondLevel, true);
@@ -205,7 +234,8 @@ function openMobileSubmenuSecondLevel(event)
     const titleText = event.currentTarget.querySelector('.mobile-main-section__subtitle').textContent;
 
     // change title
-    activeMainSection.dataset.initialTitle = activeMainSection.querySelector('.mobile-main-section__title').textContent;
+    activeMainSection.querySelector('.mobile-main-section__title').dataset.initialTitle = 
+        activeMainSection.querySelector('.mobile-main-section__title').textContent;
 
     activeMainSection.querySelector('.mobile-main-section__title').textContent = titleText;
 
@@ -214,7 +244,8 @@ function openMobileSubmenuSecondLevel(event)
     // get list
     const thirdLevelList = wrapper.querySelector('.third-level-menu-points-list');
 
-    // thirdLevelList.style.top = `${event.currentTarget.clientHeight}px`;
+    document.querySelector('.main-section-dropdown.active').style.top = 
+        `${document.querySelector('.main-section.active').clientHeight}px`;
 
     thirdLevelList.classList.toggle('opened');
 }
@@ -228,7 +259,12 @@ function closeMobileSubmenuSecondLevel(event)
     console.log('close 3rd level');
 
     const activeMainSection = document.querySelector('.main-section.active');
-    activeMainSection.querySelector('.mobile-main-section__title').textContent = activeMainSection.dataset.initialTitle;
+
+    activeMainSection.querySelector('.mobile-main-section__title').textContent = 
+        activeMainSection.querySelector('.mobile-main-section__title-wrapper .mobile-main-section__title').dataset.initialTitle;
+
+    document.querySelector('.main-section-dropdown.active').style.top = 
+        `${document.querySelector('.main-section.active').clientHeight}px`;
 
     document.querySelector('.third-level-menu-points-list.opened').classList.remove('opened');
 }
