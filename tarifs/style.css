@@ -1,0 +1,183 @@
+@font-face {
+    font-family: "mint-Helvetica";
+    src: url(./../fonts/HelveticaThin.ttf) format(truetype);
+}
+
+.mint-container *,
+.mint-container *::before,
+.mint-container *::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mint-container img
+{
+    display: block;
+    object-fit: cover;
+}
+
+.mint-container button
+{
+    outline: none;
+    border: none;
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.container-1410
+{
+    max-width: calc(1410px + 40px);
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+
+/* styles start */
+.page-title-wrapper
+{
+    margin-top: 57px;
+}
+
+.page-title
+{
+    font-family: "mint-Helvetica", "Helvetica", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+
+    text-transform: uppercase;
+
+    color: #000000;
+
+    margin-bottom: 29px;
+}
+
+.page-desc
+{
+    font-family: "mint-Helvetica", "Helvetica", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 30px;
+
+    color: #000000;
+
+    max-width: 865px;
+}
+
+.price-table-block
+{
+    margin-top: 57px;
+}
+
+/* price table */
+.price-table
+{
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.price-table  .table-row-wrapper
+{
+    background: linear-gradient(91.22deg, #C83439 0%, #FBB12E 100%);
+    overflow: hidden;
+}
+
+.price-table .table-row
+{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-table .table-head .table-row
+{
+    border-radius: 20px 20px 0px 0px;
+}
+
+.price-table .table-body .table-row:last-child
+{
+    border-radius: 0 0 20px 20px;
+}
+
+.price-table .table-row .table-cell
+{
+    font-family: "mint-Helvetica", "Helvetica", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+
+    text-align: center;
+}
+
+/* idea */
+.idea-row
+{
+    background-color: #EAF3F0;
+    padding: 27px 20px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.idea-row .idea__icon
+{
+    margin-right: 65px;
+}
+
+.idea-row .idea__text
+{
+    font-family: "mint-Helvetica", "Helvetica", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 29px;
+    /* or 138% */
+
+
+    color: #000000;
+}
+
+/* row description block */
+.table-row__description 
+{
+    padding: 31px 20px;
+}
+
+/* table head */
+.price-table .table-head .table-row
+{
+    padding: 16px 0;
+}
+
+.price-table .table-head .table-row .table-cell
+{
+    font-size: 21px;
+    line-height: 32px;
+}
+
+/* table body */
+.price-table .table-body .table-row .table-cell.operation-name,
+.price-table .table-body .table-row .table-cell.calculated-indicator
+{
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.price-table .table-body .table-row .table-cell.usn,
+.price-table .table-body .table-row .table-cell.usn-rashodi,
+.price-table .table-body .table-row .table-cell.osn
+{
+    font-size: 44px;
+    line-height: 24px;
+}
