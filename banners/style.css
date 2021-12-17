@@ -1,0 +1,172 @@
+@font-face {
+    font-family: "SignPainter";
+    src: url("/signpainter.otf") format("opentype");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
+*, *::after, *::before
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.mint-banner-container *,
+.mint-banner-container *::after,
+.mint-banner-container *::before
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.mint-banner-container img
+{
+    display: block;
+}
+
+.mint-banner-container.container-1410
+{
+    width: 100%;
+    max-width: calc(1410px + 40px);
+    
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.mint-banner-container .banner-wrapper
+{
+    background-color: #FBF4E9;
+    min-height: 731px;
+
+    display: flex;
+    align-items: stretch;
+}
+
+.left-orange-block
+{
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    width: 100%;
+    max-width: 557px;
+
+    padding-left: 14px;    
+}
+
+.left-orange-block::before
+{
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-position: left center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/orange-bg.svg");
+}
+
+.left-orange__png
+{
+    user-select: none;
+    max-width: 445px;
+    max-height: 563px;
+
+    object-fit: contain;
+    mix-blend-mode: darken;
+}
+
+.text-block
+{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    flex-grow: 1;
+    flex-shrink: 2;
+
+    padding: 0 20px;
+}
+
+.banner-title
+{
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 59px;
+
+    color: #E64B13;
+
+    margin-bottom: 57px;
+}
+
+.banner-desc
+{
+    font-family: "SignPainter", sans-serif;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 35px;
+    text-transform: uppercase;
+
+    color: #E64B13;
+
+    letter-spacing: 0.03em;
+}
+
+.banner-list
+{
+    margin-top: 36px;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.banner-list .banner-list__item
+{
+    position: relative;
+    margin-bottom: 25px;
+
+    
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 26px;
+
+    color: #080808;
+
+    padding-left: calc(17px + 50px);
+    min-height: 44px;
+
+    max-width: 615px;
+}
+.banner-list .banner-list__item:last-child
+{
+    margin-bottom: 0;
+}
+.banner-list .banner-list__item::before
+{
+    content: "";
+    
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:  50px;
+    height: 44px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("/logo-crapped.png"); 
+}
